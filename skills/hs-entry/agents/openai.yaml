@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Entry"
+  short_description: "从业务问题开始，读取图谱并生成可确认施工图。"
+  default_prompt: "使用 $hs-entry 帮我把这个业务问题整理成施工图，并告诉我该走哪条 Hs 路径。"
+policy:
+  allow_implicit_invocation: true

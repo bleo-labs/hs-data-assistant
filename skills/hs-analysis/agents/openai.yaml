@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Analysis"
+  short_description: "把业务命题转成可验证的证据、测算与结论。"
+  default_prompt: "使用 $hs-analysis 帮我分析这个业务问题，并给出证据路径、计算边界和可汇报结论。"
+policy:
+  allow_implicit_invocation: true

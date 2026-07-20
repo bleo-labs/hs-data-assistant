@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Graph"
+  short_description: "维护多业务指标树、资产链接、索引和总览。"
+  default_prompt: "使用 $hs-graph 维护这棵业务指标树：先确认业务树，再给出变更计划，确认后更新资产、索引和总览。"
+policy:
+  allow_implicit_invocation: true

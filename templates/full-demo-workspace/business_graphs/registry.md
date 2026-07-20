@@ -1,0 +1,5 @@
+# Demo Business Graph Registry
+
+| graph_id | 业务名称 | 别名 | 状态 | 入口 |
+|---|---|---|---|---|
+| `demo-omnichannel-retail` | 全渠道自营电商零售 | retail demo, omnichannel retail | task_ready | `demo-omnichannel-retail/manifest.md` |

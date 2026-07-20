@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "demo_id": "demo-omnichannel-retail",
+    "synthetic": true,
+    "generator_seed": 20260718,
+    "source_count": 8
+  },
+  "case_01": {
+    "period": "2026-04 vs 2026-05",
+    "net_sales": {
+      "2026-04": 7140966.92,
+      "2026-05": 6719671.66,
+      "delta": -421295.26,
+      "growth": -0.058997
+    },
+    "region_change": {
+      "东区": {
+        "2026-04": 2355802.43,
+        "2026-05": 1787426.98,
+        "delta": -568375.45,
+        "growth": -0.241266
+      },
+      "北区": {
+        "2026-04": 2058499.0,
+        "2026-05": 2093907.54,
+        "delta": 35408.54,
+        "growth": 0.017201
+      },
+      "南区": {
+        "2026-04": 2726665.49,
+        "2026-05": 2838337.14,
+        "delta": 111671.65,
+        "growth": 0.040955
+      }
+    },
+    "category_change": {
+      "厨房用品": {
+        "2026-04": 1713519.4,
+        "2026-05": 1771620.21,
+        "delta": 58100.81,
+        "growth": 0.033907
+      },
+      "小家电": {
+        "2026-04": 2865527.19,
+        "2026-05": 2313847.31,
+        "delta": -551679.88,
+        "growth": -0.192523
+      },
+      "收纳用品": {
+        "2026-04": 1366683.5,
+        "2026-05": 1415549.84,
+        "delta": 48866.34,
+        "growth": 0.035755
+      },
+      "清洁用品": {
+        "2026-04": 1195236.83,
+        "2026-05": 1218654.3,
+        "delta": 23417.47,
+        "growth": 0.019592
+      }
+    },
+    "channel_change": {
+      "第三方平台": {
+        "2026-04": 1766891.28,
+        "2026-05": 1707894.64,
+        "delta": -58996.64,
+        "growth": -0.03339
+      },
+      "自营App": {
+        "2026-04": 3237289.63,
+        "2026-05": 2918519.05,
+        "delta": -318770.58,
+        "growth": -0.098468
+      },
+      "自营小程序": {
+        "2026-04": 2136786.01,
+        "2026-05": 2093257.97,
+        "delta": -43528.04,
+        "growth": -0.020371
+      }
+    },
+    "east_small_appliance": {
+      "2026-04": 727235.22,
+      "2026-05": 106585.59,
+      "delta": -620649.63,
+      "growth": -0.853437
+    },
+    "paid_app_traffic": {
+      "2026-04": {
+        "visit_users": 85973,
+        "product_detail_users": 42607,
+        "visit_to_detail_rate": 0.495586
+      },
+      "2026-05": {
+        "visit_users": 144052,
+        "product_detail_users": 30045,
+        "visit_to_detail_rate": 0.208571
+      }
+    },
+    "south_returning_purchase_frequency": {
+      "2026-04": 1.473774,
+      "2026-05": 1.487075
+    }
+  },
+  "case_02": {
+    "period": "2025-01 to 2026-06",
+    "growth_comparison": "2026H1 vs 2025H1",
+    "regions": {
+      "东区": {
+        "net_sales_2025_to_2026_06": 49456852.98,
+        "h1_net_sales_growth": -0.018228,
+        "contribution_margin": 0.220136,
+        "refund_rate": 0.067531,
+        "new_customer_acquisition_cost": 32.05,
+        "on_time_fulfillment_rate": 0.925107,
+        "returning_customer_share": 0.484386,
+        "returning_purchase_frequency": 1.310176
+      },
+      "北区": {
+        "net_sales_2025_to_2026_06": 35508936.07,
+        "h1_net_sales_growth": 0.100135,
+        "contribution_margin": 0.208044,
+        "refund_rate": 0.081669,
+        "new_customer_acquisition_cost": 26.49,
+        "on_time_fulfillment_rate": 0.909582,
+        "returning_customer_share": 0.482819,
+        "returning_purchase_frequency": 1.309757
+      },
+      "南区": {
+        "net_sales_2025_to_2026_06": 44308855.82,
+        "h1_net_sales_growth": 0.253877,
+        "contribution_margin": 0.225614,
+        "refund_rate": 0.068127,
+        "new_customer_acquisition_cost": 32.93,
+        "on_time_fulfillment_rate": 0.939986,
+        "returning_customer_share": 0.506616,
+        "returning_purchase_frequency": 1.405127
+      }
+    }
+  },
+  "case_03": {
+    "baseline_period": "2026Q2",
+    "target_uplift": 0.12,
+    "baseline_net_sales": 22058452.04,
+    "target_net_sales": 24705466.28,
+    "target_gap": 2647014.24,
+    "baseline": {
+      "visit_users": 2167983,
+      "visit_to_detail_rate": 0.586647,
+      "pay_per_detail_rate": 0.16427,
+      "purchase_frequency": 1.237267,
+      "average_order_value": 91.6,
+      "returning_purchase_frequency": 1.375986,
+      "refund_rate": 0.068378,
+      "contribution_margin": 0.229522,
+      "on_time_fulfillment_rate": 0.932473,
+      "in_stock_rate": 0.94184,
+      "new_customer_acquisition_cost": 37.64
+    },
+    "single_lever_pressure": {
+      "traffic_only_visit_users": 2428141,
+      "conversion_only_pay_per_detail_rate": 0.183982,
+      "aov_only_average_order_value": 102.59,
+      "repeat_only_returning_purchase_frequency": 1.6744,
+      "repeat_only_uplift": 0.216873
+    },
+    "balanced_path": {
+      "visit_users_uplift": 0.03,
+      "pay_per_detail_uplift": 0.03,
+      "purchase_frequency_uplift": 0.03,
+      "average_order_value_uplift": 0.025,
+      "combined_uplift": 0.120045
+    }
+  }
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Metric Audit"
+  short_description: "审计指标口径、闭环、可比性、映射和异常。"
+  default_prompt: "使用 $hs-metric-audit 审计这份中间测算，告诉我哪些结果可以进入最终交付。"
+policy:
+  allow_implicit_invocation: true

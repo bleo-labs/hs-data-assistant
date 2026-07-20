@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Output"
+  short_description: "把 Hs 结论整理成可读、可复查、可交付的产物。"
+  default_prompt: "使用 $hs-output 把这份 Hs 结果整理成适合汇报的报告、图表或表格。"
+policy:
+  allow_implicit_invocation: true

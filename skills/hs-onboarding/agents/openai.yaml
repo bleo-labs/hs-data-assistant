@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Onboarding"
+  short_description: "生成业务认知地图、资产清单和待补材料提示。"
+  default_prompt: "使用 $hs-onboarding 根据我的业务描述和已有资料，建立第一版业务认知地图。"
+policy:
+  allow_implicit_invocation: true

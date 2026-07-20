@@ -1,0 +1,6 @@
+interface:
+  display_name: "Hs Data Contract"
+  short_description: "在计算前冻结数据源、口径、粒度和映射关系。"
+  default_prompt: "使用 $hs-data-contract 为这个数据任务建立可执行的数据契约。"
+policy:
+  allow_implicit_invocation: true
