@@ -15,10 +15,12 @@ flowchart LR
   AUDIT["hs-metric-audit\n独立校验"]
   TABLE["hs-table-builder\n三层表格"]
   OUTPUT["hs-output\n可交付表达"]
+  RECORD["project_graph + run_record\n计划与实际执行证据"]
   FEEDBACK["hs-feedback\n问题归因与回写"]
 
-  ENTRY --> ONBOARD
-  ENTRY --> GRAPH
+  ENTRY --> RECORD
+  RECORD --> ONBOARD
+  RECORD --> GRAPH
   ONBOARD --> GRAPH
   GRAPH --> CONTRACT
   GRAPH --> ANALYSIS
@@ -27,6 +29,7 @@ flowchart LR
   ANALYSIS --> AUDIT --> TABLE --> OUTPUT
   RESEARCH --> OUTPUT
   OUTPUT --> FEEDBACK
+  RECORD -.关键事件.-> FEEDBACK
   FEEDBACK --> ENTRY
   FEEDBACK --> GRAPH
   FEEDBACK --> ANALYSIS
@@ -39,6 +42,7 @@ flowchart LR
 - 外部研究命题以 `hs-research` 为主，不强行经过数据契约和建表。
 - 标准或重型内部数据任务必须经过 `hs-data-contract -> hs-analysis -> hs-metric-audit -> hs-table-builder`。
 - 任何任务出现漏读、口径冲突、结论不可用或用户纠正时，都通过 `hs-feedback` 回写到真正需要修正的模块。
+- 标准或重型任务使用同一组 `node_id` 对齐 `project_graph` 与 `run_record`：前者是施工计划，后者只记录关键执行事件。
 
 ## 1. 技能层：工作方法
 
@@ -84,7 +88,18 @@ Outputs 是具体任务产生的交付物，例如报告、表格、图表、施
 
 输出物可能暴露业务图谱哪里不完整，但输出物不能替代业务图谱。需要长期保留的变化，应该通过 `hs-graph` 写回。
 
-## 4. 反馈回路：系统自我修正
+## 4. 运行记录：计划与实际对齐
+
+标准和重型任务在用户确认施工图后初始化 `run_record.md`。它不保存完整思维链或每次工具调用，只在以下节点追加事件：任务启动、节点完成、节点阻塞、用户纠正、修改提案、回归验证和任务收口。
+
+这样做的目的不是增加项目管理负担，而是让 Feedback 能回答两个问题：
+
+- 问题第一次在哪个施工节点发生。
+- 失败来自业务知识、数据边界、通用方法、输出契约，还是一次偶发未执行。
+
+详细字段见 `skills/hs-entry/references/run-record-contract.md`。
+
+## 5. 反馈回路：受控自我修正
 
 Feedback 记录系统在哪里失败，并判断应该修改哪一个真源：
 
@@ -98,7 +113,22 @@ Feedback 记录系统在哪里失败，并判断应该修改哪一个真源：
 - 输出可读性问题 -> `hs-output`
 - 第一版业务地图逻辑问题 -> `hs-onboarding`
 
-Feedback 应该先停止当前任务，分类问题，再决定是否修改系统，避免把一次偶发失败偷偷固化成永久规则。
+Feedback 应该先停止当前任务，读取运行证据并定位首次偏离，再决定是否修改系统，避免把一次偶发失败偷偷固化成永久规则。
+
+标准闭环：
+
+```text
+真实任务 -> 运行记录 -> 用户纠正或校验失败 -> 根因分类
+        -> 修改提案 -> 用户确认 -> 目标能力回写
+        -> 从最早受影响节点重跑 -> 回归验证
+```
+
+Hs 不允许自由改写自己：
+
+- 私有业务缺口回写 business graph，不进入通用 Skill。
+- 规则已经存在但本轮没有执行，先记录和重跑，不急着加规则。
+- 通用 Skill 修改必须经用户确认，并绑定至少一个可复现回归样本。
+- 未通过回归验证，不宣称问题已经解决。
 
 ## 核心规则
 

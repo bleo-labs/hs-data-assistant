@@ -87,6 +87,10 @@ description: Hs 产出物格式约束。用于把 Hs Entry、Onboarding、Analys
 
 如果用户要求生成文件，文件必须保存到对应任务输出目录，并在最终回复中给出可点击路径。若只是规范下一步，输出应是可直接复用的格式清单或模板。
 
+## 运行记录
+
+标准或重型任务开始前，必须读取 `project_graph` 与同目录的 `run_record`。产出物完成、可读性检查未通过、交付格式改变或用户纠正时，按 `../hs-entry/references/run-record-contract.md` 追加最小事件，并链接最终产物或问题位置。
+
 ## Key Guardrails
 
 - 不要用长篇解释替代结构化交付。
@@ -106,3 +110,4 @@ description: Hs 产出物格式约束。用于把 Hs Entry、Onboarding、Analys
 - Entry 任务施工图规则：`../hs-entry/references/project-graph.md`
 - Graph 指标树资产管理：`../hs-graph/SKILL.md`
 - Feedback 与回写：`../hs-feedback/SKILL.md`
+- 运行记录契约：`../hs-entry/references/run-record-contract.md`

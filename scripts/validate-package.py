@@ -167,6 +167,10 @@ def check_package_contract() -> None:
         "templates/full-demo-workspace/business_graphs/registry.md",
         "examples/business_graphs/registry.md",
         "templates/feedback/feedback_card.md",
+        "templates/feedback/regression_case.md",
+        "templates/run/run_record.md",
+        "skills/hs-entry/references/run-record-contract.md",
+        "skills/hs-feedback/references/regression-workflow.md",
     ]
     for rel in required:
         if not (ROOT / rel).exists():
@@ -195,6 +199,30 @@ def check_local_markdown_links() -> None:
         print("\n".join(failures))
         fail("broken local markdown links found")
     print("OK: local markdown links resolve")
+
+
+def check_feedback_loop_contract() -> None:
+    skill_files = sorted((ROOT / "skills").glob("hs-*/SKILL.md"))
+    missing_run_record = []
+    for path in skill_files:
+        text = path.read_text(encoding="utf-8")
+        if "run_record" not in text or "run-record-contract.md" not in text:
+            missing_run_record.append(str(path.relative_to(ROOT)))
+
+    if missing_run_record:
+        fail(f"skills missing run-record contract: {', '.join(missing_run_record)}")
+
+    feedback = (ROOT / "skills" / "hs-feedback" / "SKILL.md").read_text(encoding="utf-8")
+    required_feedback_rules = (
+        "首次偏离",
+        "形成修改提案并等待确认",
+        "回写并回归验证",
+        "regression-workflow.md",
+    )
+    if not all(rule in feedback for rule in required_feedback_rules):
+        fail("hs-feedback is missing controlled writeback or regression rules")
+
+    print(f"OK: {len(skill_files)} skills share the run-record and controlled-feedback contract")
 
 
 def check_demo_contract() -> None:
@@ -422,6 +450,7 @@ def write_retail_demo_regression_report() -> None:
 - Skill frontmatter 与界面元数据: pass
 - 产品包文件契约: pass
 - 本地 Markdown 链接: pass
+- 运行记录与受控反馈闭环: pass
 - 私有名称、路径与具体业务词扫描: pass
 - 8 份 Source 卡与数据文件绑定: pass
 - 固定种子数据独立审计: 40 pass / 0 fail
@@ -444,6 +473,7 @@ def main() -> None:
     check_private_terms()
     check_package_contract()
     check_local_markdown_links()
+    check_feedback_loop_contract()
     check_demo_contract()
     check_retail_demo_contract()
     check_retail_demo_tasks()

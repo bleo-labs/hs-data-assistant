@@ -1,16 +1,25 @@
 # Hs Feedback Card
 
+- Feedback ID:
+- Run ID:
+- Related event IDs:
 - Trigger source:
 - Original task:
 - Expected behavior:
 - Actual behavior:
 - User evidence:
+- First divergence node:
+- Evidence links:
 - Problem type:
 - Affected Hs ability:
 - Affected business graph:
 - Target source of truth:
 - Risk level:
 - Recommended action:
+- Generalization decision: case_only / business_asset / skill_candidate / record_only
 - Requires confirmation:
 - Owner skill:
-- Status:
+- Regression case:
+- Verification plan:
+- Verification result:
+- Status: open / proposed / approved / fixed / verified / rejected

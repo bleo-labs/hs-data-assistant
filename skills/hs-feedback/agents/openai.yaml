@@ -1,6 +1,6 @@
 interface:
   display_name: "Hs Feedback"
-  short_description: "记录和处理 Hs 使用中的 Bad Case、回写卡和规则修正。"
-  default_prompt: "使用 $hs-feedback 复盘这次 Hs 结果的问题，并判断该回写到哪里。"
+  short_description: "用运行证据复盘 Bad Case，确认回写并完成回归验证。"
+  default_prompt: "使用 $hs-feedback 读取本次运行记录，定位 Bad Case 根因，给出回写提案并设计回归验证。"
 policy:
   allow_implicit_invocation: true

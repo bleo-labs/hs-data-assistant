@@ -140,6 +140,10 @@ outputs/hs_analysis/{YYYYMMDD}_{task_name}/
 
 交付前校验汇总关系、公式关系、率类重算、PP 口径、0 与空白、数据截止时间、指标适用范围和结论边界。数据型交付由 `hs-table-builder` 与 `hs-output` 完成，最终产出必须可见口径、截止日期、范围和条件。最终输出要匹配用户场景，并按 `hs-output` 的产出物契约说明关键证据、结论边界、数据缺口和指标树待回写项。
 
+## 运行记录
+
+标准或重型任务开始前，必须读取 `project_graph` 与同目录的 `run_record`。临时指标审计表完成、中间测算完成、证据不足导致结论降级、节点阻塞或用户纠正时，按 `../hs-entry/references/run-record-contract.md` 追加最小事件，并链接对应产物。
+
 ## Key Guardrails
 
 - 经营诊断不能停在主题指标的一级贡献拆解；必须继续追到能解释变化的过程、资源、效率或校准信息，或说明缺失原因。
@@ -164,5 +168,6 @@ outputs/hs_analysis/{YYYYMMDD}_{task_name}/
 - 数据契约：`../hs-data-contract/SKILL.md`
 - 指标审计：`../hs-metric-audit/SKILL.md`
 - 表格构建：`../hs-table-builder/SKILL.md`
+- 运行记录契约：`../hs-entry/references/run-record-contract.md`
 
 `references/internal-modules.md` 只作为开发过程参考，不是执行本 Skill 的必读文件。

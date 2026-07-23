@@ -18,6 +18,19 @@
 | stale_index_or_link | index, registry, manifest, or cross-link drifted | hs-graph |
 | user_input_gap | user did not provide enough information | no_change / hs-entry |
 
+## Root-Cause Layers
+
+先找首次偏离的层级，不要只修最后暴露问题的文件：
+
+| layer | 判断标准 | 默认处理 |
+|---|---|---|
+| business_truth | 缺失或错误的是某个业务专属指标、维度、层级、事实、Source 或关系 | 回写对应 business graph |
+| data_boundary | 来源、粒度、口径、时间、映射或空值语义没有冻结 | hs-data-contract / hs-graph |
+| reusable_method | 通用工作流缺步骤、门槛或校验规则 | 对应 Hs Skill 修改候选 |
+| output_contract | 分析正确但交付格式让用户误读或无法使用 | hs-output |
+| execution_only | 规则已经存在，本轮偶发没有执行 | 记录、重跑，不急着改 Skill |
+| user_preference | 只是特定用户或特定任务的偏好 | 用户配置或本次产物，不写通用规则 |
+
 ## How To Decide Whether To Change A Skill
 
 Change a Skill only when at least one is true:
@@ -26,6 +39,8 @@ Change a Skill only when at least one is true:
 - the rule was explicitly agreed as reusable
 - the failure creates high risk in future tasks
 - the fix is a low-cost guardrail that does not overfit a concrete case
+
+通用 Skill 修改还必须满足：能够写出一个不含私有业务信息的回归样本，并有明确通过标准。
 
 Do not change a Skill when:
 
@@ -60,3 +75,5 @@ Use skill rule writeback when the issue is about reusable behavior:
 - a required checkpoint is missing
 
 Before patching, state why the rule is transferable and not a private-case overfit.
+
+修改后必须按 `regression-workflow.md` 重跑验证；未验证的修改只能标记为 `fixed_unverified`，不能标记为已解决。

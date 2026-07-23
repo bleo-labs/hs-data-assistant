@@ -4,6 +4,8 @@
 
 它借鉴 Graphify 的项目图思想：先做轻量 Graph Scan，再把任务拆成节点、边、范围和闸门，让后续执行围绕这张图推进，避免在多轮分析、研究、建表和输出中偏离最初命题。
 
+`project_graph` 记录计划，`run_record` 记录实际执行。两者必须使用同一组 `node_id`，但不能相互替代。运行记录契约见 `run-record-contract.md`。
+
 ## 数据型任务的发布链
 
 当标准或重型任务需要读取、计算或呈现内部数据时，项目图必须在 Graph Scan 和用户确认之后，补上以下发布链：
@@ -166,6 +168,8 @@ flowchart LR
 ## Project Graph
 
 ### Task
+- run_id：
+- run_record：
 - 用户原始问题：
 - 真实命题：
 - 目标交付物：
@@ -279,6 +283,8 @@ flowchart LR
 
 所有后续 Hs 能力在接到 `project_graph` 后，必须先读取它，再执行自己的任务。标准任务和重型任务的 `project_graph` 必须包含 Graph Scan 摘要。
 
+标准和重型任务还必须读取同目录的 `run_record`，并按 `run-record-contract.md` 在节点完成、阻塞、用户纠正和回归验证时追加最小事件。运行记录只证明实际执行，不替代任何业务或数据真源。
+
 - `hs-onboarding`：确认自己只负责图谱或业务框架节点，不替代后续分析。
 - `hs-analysis`：先读取 Graph Scan 摘要，再按 `Scope Gate` 检查指标、时间、对象和数据源覆盖；随后仍要自己输出临时指标审计表，不能只依赖 Entry 的预扫描。
 - `hs-data-contract`：只使用 Graph Scan 已确认的业务图谱、指标节点和 Source 卡冻结数据边界，不能自行猜测来源或口径。
@@ -286,7 +292,7 @@ flowchart LR
 - `hs-table-builder`：只从审计通过的中间结果构建数据源层、中间测算层和最终呈现层。
 - `hs-research`：按外部样本范围采样，不能把单个案例当完整对标。
 - `hs-output`：按 `Deliverables` 和交付对象选择产物格式。
-- 未来 `hs-feedback`：当执行偏离 `project_graph`，把偏离记录成 Bad Case。
+- `hs-feedback`：当执行偏离 `project_graph`，读取运行记录，把偏离定位为 Bad Case 并进入受控回写。
 
 如果标准任务或重型任务没有看到 `project_graph`，或 `project_graph` 没有 Graph Scan 摘要，后续能力必须停止执行，并要求先回到 `hs-entry` 补齐施工图。
 
@@ -296,6 +302,12 @@ flowchart LR
 
 ```text
 outputs/hs_entry/{YYYYMMDD}_{task_name}/project_graph.md
+```
+
+同一目录必须初始化：
+
+```text
+outputs/hs_entry/{YYYYMMDD}_{task_name}/run_record.md
 ```
 
 重型任务可以同时生成机器可读版：

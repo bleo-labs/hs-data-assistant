@@ -7,20 +7,28 @@ Use this card whenever the user says a result is wrong, incomplete, hard to read
 ```markdown
 ## Hs Feedback Card
 
+- Feedback ID:
+- Run ID:
+- Related event IDs:
 - Trigger source:
 - Original task:
 - Expected behavior:
 - Actual behavior:
 - User evidence:
+- First divergence node:
+- Evidence links:
 - Problem type:
 - Affected Hs ability:
 - Affected business graph:
 - Target source of truth:
 - Risk level:
 - Recommended action:
+- Generalization decision: case_only / business_asset / skill_candidate / record_only
 - Requires confirmation:
 - Owner skill:
-- Status:
+- Regression case:
+- Verification plan:
+- Status: open / proposed / approved / fixed / verified / rejected
 ```
 
 ## 2. Target Source Of Truth
@@ -51,7 +59,17 @@ Choose only one primary target:
 | patch_docs | update human-facing docs |
 | ask_confirmation | stop and ask before high-risk changes |
 
-## 4. Completion Output
+## 4. Evidence First
+
+优先使用 `run_record` 中的节点事件、产物链接和用户纠正定位问题。不要只根据最终答案倒推根因。
+
+如果记录显示规则已经存在，但本轮没有执行，先归类为 `record_only` 或执行缺陷；只有重复出现、风险高或用户明确确认后，才提出 Skill 修改。
+
+## 5. Regression Decision
+
+修改业务图谱核心关系、数据边界、通用 Skill、发布门槛或输出硬约束后，必须建立回归样本并重跑验证。具体见 `regression-workflow.md`。
+
+## 6. Completion Output
 
 After handling feedback, output:
 
@@ -64,6 +82,8 @@ After handling feedback, output:
 - Files not changed:
 - Follow-up:
 - Same issue prevention:
+- Regression case:
+- Verification result:
 ```
 
 If the issue is not fixed, say why and what is needed next.

@@ -2,11 +2,12 @@
 
 > 本报告由 `scripts/validate-package.py` 在全部检查通过后生成。演示业务和数据均为虚构合成。
 
-- validation_date: 2026-07-21
+- validation_date: 2026-07-23
 - release_ready: yes
 - Skill frontmatter 与界面元数据: pass
 - 产品包文件契约: pass
 - 本地 Markdown 链接: pass
+- 运行记录与受控反馈闭环: pass
 - 私有名称、路径与具体业务词扫描: pass
 - 8 份 Source 卡与数据文件绑定: pass
 - 固定种子数据独立审计: 40 pass / 0 fail
